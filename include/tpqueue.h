@@ -5,59 +5,58 @@
 
 template<typename T>
 class TPQueue {
-    private:
+  private:
     struct Node {
-        T data;
-        Node* next;
-        explicit Node(const T &d, Node* n = nullptr) : data(d), next(n) { }
+      T data;
+      Node* next;
+      explicit Node(const T &d, Node* n = nullptr) : data(d), next(n) { }
     };
     Node* head;
-
- public:
+  public:
     TPQueue() : head(nullptr) { }
     ~TPQueue() {
-        while (!empty()) {
-            pop();
-        }
+      while (!empty()) {
+        pop();
+      }
     }
     bool empty() const {
-        return head == nullptr;
+      return head == nullptr;
     }
     void push(const T& value) {
-        Node* newNode = new Node(value);
+      Node* newNode = new Node(value);
         if (!head || value.prior > head->data.prior) {
-            newNode->next = head;
-            head = newNode;
-        } else {
+          newNode->next = head;
+          head = newNode;
+          } else {
             Node* current = head;
             while (current->next && current->next->data.prior >= value.prior) {
-                current = current->next;
+              current = current->next;
             }
             newNode->next = current->next;
             current->next = newNode;
-        }
+            }
     }
     T pop() {
-        if (empty()) {
-            throw std::underflow_error("Pop out of empty queue");
-        }
-        Node* temp = head;
-        T value = head->data;
-        head = head->next;
-        delete temp;
-        return value;
+      if (empty()) {
+        throw std::underflow_error("Pop out of empty queue");
+      }
+      Node* temp = head;
+      T value = head->data;
+      head = head->next;
+      delete temp;
+      return value;
     }
     T& front() {
-        if (empty()) {
-            throw std::underflow_error("Cast to empty queue");
-        }
-        return head->data;
+      if (empty()) {
+        throw std::underflow_error("Cast to empty queue");
+      }
+      return head->data;
     }
     const T& front() const {
-        if (empty()) {
-            throw std::underflow_error("Cast to empty queue");
-        }
-        return head->data;
+      if (empty()) {
+        throw std::underflow_error("Cast to empty queue");
+      }
+      return head->data;
     }
 };
 struct SYM {
