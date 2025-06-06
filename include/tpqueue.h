@@ -28,14 +28,14 @@ class TPQueue {
         if (!head || value.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
-            } else {
-                Node* current = head;
-                while (current->next && current->next->data.prior >= value.prior) {
-                    current = current->next;
-                }
-                newNode->next = current->next;
-                current->next = newNode;
-              }
+        } else {
+            Node* current = head;
+            while (current->next && current->next->data.prior >= value.prior){
+                current = current->next;
+            }
+            newNode->next = current->next;
+            current->next = newNode;
+        }
     }
     T pop() {
         if (empty()) {
