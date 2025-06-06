@@ -30,7 +30,7 @@ class TPQueue {
             head = newNode;
         } else {
             Node* current = head;
-            while (current->next && current->next->data.prior >= value.prior){
+            while (current->next && current->next->data.prior >= value.prior) {
                 current = current->next;
             }
             newNode->next = current->next;
