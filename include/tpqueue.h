@@ -6,20 +6,20 @@
 template<typename T>
 class TPQueue {
     private:
-      struct Node {
-        T data;
-        Node* next;
-        explicit Node(const T &d, Node* n = nullptr) : data(d), next(n) { }
+     struct Node {
+       T data;
+       Node* next;
+       explicit Node(const T &d, Node* n = nullptr) : data(d), next(n) { }
       };
       Node* head;
 
     public:
-      TPQueue() : head(nullptr) { }
-      ~TPQueue() {
-        while (!empty()) {
-          pop();
-        }
-      }
+     TPQueue() : head(nullptr) { }
+     ~TPQueue() {
+       while (!empty()) {
+       pop();
+       }
+     }
       bool empty() const {
         return head == nullptr;
       }
@@ -30,7 +30,7 @@ class TPQueue {
             head = newNode;
             } else {
               Node* current = head;
-              while (current->next && current->next->data.prior >= value.prior) {
+             while (current->next && current->next->data.prior >= value.prior) {
                 current = current->next;
               }
               newNode->next = current->next;
